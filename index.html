@@ -1,42 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Honey Badger AR</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Experience with Universal Sound</title>
     <style>
-      body {
-        margin: 0;
-        padding: 0;
-        background-color: #fff;
-        font-family: sans-serif;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-      }
-      .ar-launch-image {
-        max-width: 90%;
-        cursor: pointer;
-      }
-      h1 {
-        margin-top: 20px;
-      }
+        body { margin: 0; overflow: hidden; }
+        model-viewer {
+            width: 100vw;
+            height: 100vh;
+        }
     </style>
-  </head>
-  <body>
-    <!-- ✅ This image will open the Scene Viewer on Android with sound -->
-    <a
-      href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;scheme=https;package=com.google.android.googlequicksearchbox;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;"
-    >
-      <img
-        class="ar-launch-image"
-        src="honeyBadger.png"
-        alt="Tap to launch AR"
-      />
-    </a>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
 
-<!--     <h1>Tap the image to view in AR</h1> -->
-  </body>
+    <model-viewer
+        id="ar-model"
+        camera-controls
+        touch-action="pan-y"
+        autoplay
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        scale="0.2 0.2 0.2"
+        shadow-intensity="1"
+        src="honey.glb" 
+        ios-src="honey.usdz" 
+        alt="Honey Badger"
+    >
+    </model-viewer>
+
+    <script>
+        const modelViewer = document.getElementById('ar-model');
+
+        // Define your sound URL for Android Scene Viewer
+        const androidSoundUrl = 'happy.mp3'
+
+        // Function to create the custom AR intent for Android Scene Viewer
+        function createSceneViewerIntent(modelUrl, title, soundUrl) {
+            const baseUrl = 'intent://arvr.google.com/scene-viewer/1.2';
+            const params = new URLSearchParams();
+            params.append('file', modelUrl);
+            params.append('title', title);
+            params.append('sound', soundUrl); // Add your sound here!
+            params.append('referrer', 'your-website.com:AR_EXPERIENCE'); // Customize referrer
+
+            // Other potential parameters you might want from the model-viewer
+            // e.g., scale, auto-place, etc. For simplicity, we'll keep it basic for now.
+
+            const fallbackUrl = `https://arvr.google.com/scene-viewer?${params.toString()}`;
+
+            return `${baseUrl}?${params.toString()}#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end;`;
+        }
+
+        // Override the default AR button behavior for Android to inject sound
+        modelViewer.addEventListener('ar-button-activated', (event) => {
+            // Only apply this custom logic if the platform is Android and Scene Viewer is the mode
+            if (event.detail.arStatus === 'not-presenting' && modelViewer.arStatus === 'not-presenting' && navigator.userAgent.includes('Android')) {
+                // Check if the user agent is Android to ensure we target Scene Viewer
+                const glbUrl = modelViewer.src;
+                const altText = modelViewer.alt;
+
+                const customIntentUrl = createSceneViewerIntent(glbUrl, altText, androidSoundUrl);
+
+                // This will trigger the Scene Viewer directly with your custom intent
+                window.location.href = customIntentUrl;
+
+                // Prevent model-viewer's default AR launch for Android, as we've handled it
+                event.preventDefault(); 
+            }
+        });
+        
+        // Ensure that the iOS Quick Look works as expected by just providing the ios-src
+        // model-viewer will handle the click for `ios-src` automatically.
+
+    </script>
+</body>
 </html>
