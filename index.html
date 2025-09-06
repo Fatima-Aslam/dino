@@ -23,15 +23,44 @@
     </style>
   </head>
   <body>
-    <!-- ✅ Tap image to launch AR directly (with camera & sound) -->
-    <a
-      href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&mode=ar_only&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;scheme=https;package=com.google.android.googlequicksearchbox;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&mode=ar_only&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;"
-    >
+    <!-- AR Launcher Link: will change dynamically based on platform -->
+    <a id="ar-link" href="#">
       <img
         class="ar-launch-image"
         src="honeyBadger.png"
         alt="Tap to launch AR"
       />
     </a>
+
+    <script>
+      const arLink = document.getElementById('ar-link');
+
+      // URLs for Android and iOS
+      const androidIntentURL =
+        'intent://arvr.google.com/scene-viewer/1.2?' +
+        'file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb' +
+        '&title=Alpine+Goat' +
+        '&mode=ar_only' +
+        '&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg' +
+        '#Intent;scheme=https;package=com.google.android.googlequicksearchbox;' +
+        'S.browser_fallback_url=https://arvr.google.com/scene-viewer?' +
+        'file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb' +
+        '&title=Alpine+Goat' +
+        '&mode=ar_only' +
+        '&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;';
+
+      const iosUSDZLink =
+        'https://developer.apple.com/augmented-reality/quick-look/models/toy_biplane/toy_biplane.usdz'; // <-- Replace with your real .usdz URL
+
+      // Detect iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+      if (isIOS) {
+        arLink.setAttribute('rel', 'ar');
+        arLink.setAttribute('href', iosUSDZLink);
+      } else {
+        arLink.setAttribute('href', androidIntentURL);
+      }
+    </script>
   </body>
 </html>
