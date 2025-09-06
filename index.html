@@ -31,7 +31,7 @@
   <body>
     <div id="card">
       <!-- All you need to put beautiful, interactive 3D content on your site: -->
-      <model-viewer
+<!--       <model-viewer
         id="play-paused"
         camera-controls
         touch-action="pan-y"
@@ -43,6 +43,21 @@
         src="honey.glb"
         ios-src="honey.usdz"    
       alt="Honey Badger"
+      > -->
+
+      <model-viewer
+        id="play-paused"
+        camera-controls
+        touch-action="pan-y"
+        autoplay
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        scale="0.2 0.2 0.2"
+        shadow-intensity="1"
+        src="model.glb"
+        ios-src="honey.usdz"    
+      alt="Honey Badger"
+        sound="Goat.ogg"
       >
         
         <div class="attribution" id="play-controls">
