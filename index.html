@@ -4,38 +4,58 @@
     <title>Honey Badger AR</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <style>
       body {
         margin: 0;
-        padding: 0;
-        background-color: #fff;
-        font-family: sans-serif;
+        background: #fff;
         display: flex;
-        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
       }
-      .ar-launch-image {
-        max-width: 90%;
+
+      #container {
+        position: relative;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: auto;
+      }
+
+      #custom-ar-button {
+        position: absolute;
+        inset: 0;
         cursor: pointer;
+        background: transparent;
+        border: none;
       }
     </style>
   </head>
   <body>
-    <!-- AR Launcher Link: will change dynamically based on platform -->
-    <a id="ar-link" href="#">
-      <img
-        class="ar-launch-image"
-        src="honeyBadger.png"
-        alt="Tap to launch AR"
-      />
-    </a>
+    <div id="container">
+      <!-- ✅ 3D Preview -->
+      <model-viewer
+        id="preview"
+        camera-controls
+        autoplay
+        ar
+        ar-modes="webxr quick-look"  <!-- ❌ exclude 'scene-viewer' to prevent default -->
+        ios-src="https://developer.apple.com/augmented-reality/quick-look/models/toy_biplane/toy_biplane.usdz"
+        src="https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb"
+        alt="Honey Badger"
+      ></model-viewer>
+
+      <!-- ✅ Custom button overlays the entire model-viewer -->
+      <a id="custom-ar-button" href="#" aria-label="Launch in AR"></a>
+    </div>
 
     <script>
-      const arLink = document.getElementById('ar-link');
+      const arButton = document.getElementById("custom-ar-button");
 
-      // URLs for Android and iOS
       const androidIntentURL =
         'intent://arvr.google.com/scene-viewer/1.2?' +
         'file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb' +
@@ -50,17 +70,12 @@
         '&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;';
 
       const iosUSDZLink =
-        'https://developer.apple.com/augmented-reality/quick-look/models/toy_biplane/toy_biplane.usdz'; // <-- Replace with your real .usdz URL
+        'https://developer.apple.com/augmented-reality/quick-look/models/toy_biplane/toy_biplane.usdz';
 
-      // Detect iOS
       const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
-      if (isIOS) {
-        arLink.setAttribute('rel', 'ar');
-        arLink.setAttribute('href', iosUSDZLink);
-      } else {
-        arLink.setAttribute('href', androidIntentURL);
-      }
+      arButton.setAttribute('href', isIOS ? iosUSDZLink : androidIntentURL);
+      if (isIOS) arButton.setAttribute('rel', 'ar');
     </script>
   </body>
 </html>
