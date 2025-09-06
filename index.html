@@ -54,7 +54,7 @@
         ar-modes="scene-viewer webxr quick-look"
         scale="0.2 0.2 0.2"
         shadow-intensity="1"
-        src="honey.glb"
+        src="model.glb"
         ios-src="honey.usdz"    
       alt="Honey Badger"
       >
@@ -126,15 +126,15 @@
         const modelViewer = document.getElementById('play-paused');
 
         // Define your sound URL for Android Scene Viewer
-        const androidSoundUrl = 'happy.mp3'; // Or .mp3
+        const androidSoundUrl = 'https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg'; // Or .mp3
 
         // Function to create the custom AR intent for Android Scene Viewer
         function createSceneViewerIntent(modelUrl, title, soundUrl) {
             const baseUrl = 'intent://arvr.google.com/scene-viewer/1.2';
             const params = new URLSearchParams();
-            params.append('file', honey.glb);
+            params.append('file', https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb);
             params.append('title', HoneyBadger);
-            params.append('sound', happy.mp3); // Add your sound here!
+            params.append('sound', https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg); // Add your sound here!
             params.append('referrer', 'https:dino-pearl-three.vercel.app:AR_EXPERIENCE'); // Customize referrer
 
             // Other potential parameters you might want from the model-viewer
