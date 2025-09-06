@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Experience with Universal Sound</title>
-    <style>
-        body { margin: 0; overflow: hidden; }
-        model-viewer {
-            width: 100vw;
-            height: 100vh;
-        }
-    </style>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <head>
+    <title>&lt;Honey Badger &gt;</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="stylesheet" href="demo-styles.css" />
+
+    <!-- The following libraries and polyfills are recommended to maximize browser support -->
+    <!-- NOTE: you must adjust the paths as appropriate for your project -->
+
     <!-- Web Components polyfill to support Edge and Firefox < 63 -->
         <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
 
@@ -28,6 +27,90 @@
       src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
       defer
     ></script>
+  </head>
+  <body>
+    <div id="card">
+      <!-- All you need to put beautiful, interactive 3D content on your site: -->
+<!--       <model-viewer
+        id="play-paused"
+        camera-controls
+        touch-action="pan-y"
+        autoplay
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        scale="0.2 0.2 0.2"
+        shadow-intensity="1"
+        src="honey.glb"
+        ios-src="honey.usdz"    
+      alt="Honey Badger"
+      > -->
+
+      <model-viewer
+        id="play-paused"
+        camera-controls
+        touch-action="pan-y"
+        autoplay
+        ar
+        ar-modes="scene-viewer webxr quick-look"
+        scale="0.2 0.2 0.2"
+        shadow-intensity="1"
+        src="model.glb"
+        ios-src="honey.usdz"    
+      alt="Honey Badger"
+        sound="https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg"
+      >
+        
+        <div class="attribution" id="play-controls">
+          <button><img src="https://cdn.glitch.global/c7f53e9a-3a2b-48bd-bf73-1be865655ec7/play.png?v=1721869810503" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="whatsapp-controls">
+<!--           <a href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;">Avocado</a> -->
+<a href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;">Avocado</a>
+          <!--           <button><img src="whatsapp.png" alt="Button Image"/></button> -->
+        </div>
+        <div class="attribution" id="twitter-controls">
+          <button><img src="twitter.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="call-controls">
+          <button><img src="call.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="snapchat-controls">
+          <button><img src="snapchat.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="facebook-controls">
+          <button><img src="facebook.png" alt="Button Image"/></button>
+        </div>
+      </model-viewer>
+
+      <script>
+        var SongTune = new Howl({
+        src: [
+          "https://cdn.glitch.global/91a464bf-2558-4f5b-91b6-02948124204e/song.mp3?v=1725276897258",
+        ],
+         loop: true,
+      });
+        const modelViewerColor = document.querySelector(
+          "model-viewer#play-paused"
+        );
+ const modelViewerColor1 = document.querySelector(
+          "play-paused"
+        );
+        document
+          .querySelector("#play-controls")
+          .addEventListener("click", (event) => {
+            SongTune.play();
+            //alert("play button clicked");
+          });
+      </script>
+      <section class="attribution">
+        <span>
+          <h1>Honey Badger</h1>
+          <!--         <span>By <a href="https://poly.google.com/view/dLHpzNdygsg" target="_blank">Poly</a></span> -->
+        </span>
+      </section>
+    </div>
+
+    <!-- 💁 Include both scripts below to support all browsers! -->
 
     <!-- Loads <model-viewer> for modern browsers: -->
     <script
@@ -40,30 +123,11 @@
       nomodule
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
     ></script>
-    
-</head>
-<body>
-
-    <model-viewer
-        id="ar-model"
-        camera-controls
-        touch-action="pan-y"
-        autoplay
-        ar
-        ar-modes="scene-viewer webxr quick-look"
-        scale="0.2 0.2 0.2"
-        shadow-intensity="1"
-        src="honey.glb" 
-        ios-src="honey.usdz" 
-        alt="Honey Badger"
-    >
-    </model-viewer>
-
-    <script>
+      <script>
         const modelViewer = document.getElementById('ar-model');
 
         // Define your sound URL for Android Scene Viewer
-        const androidSoundUrl = 'happy.mp3'
+        const androidSoundUrl = 'happy.mp3'; // Or .mp3
 
         // Function to create the custom AR intent for Android Scene Viewer
         function createSceneViewerIntent(modelUrl, title, soundUrl) {
@@ -104,5 +168,5 @@
         // model-viewer will handle the click for `ios-src` automatically.
 
     </script>
-</body>
+  </body>
 </html>
