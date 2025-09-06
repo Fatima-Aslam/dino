@@ -34,35 +34,37 @@
         ar-modes="scene-viewer webxr quick-look"
         scale="0.2 0.2 0.2"
         shadow-intensity="1"
-        src="model.glb"
+        src="honey.glb"
         ios-src="honey.usdz"    
-      alt="Honey Badger"
+        alt="Honey Badger"
         >
         <div class="attribution" id="play-controls">
-          <button><img src="https://cdn.glitch.global/c7f53e9a-3a2b-48bd-bf73-1be865655ec7/play.png?v=1721869810503" alt="Button Image"/></button>
-        </div>
-        <div class="attribution" id="whatsapp-controls">
-            <a href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;">Avocado</a>
-        </div>
-        <div class="attribution" id="whatsapp-controls">
             <a id="ar-link" href="#">
               <img
                 class="ar-launch-image"
-                src="whatsapp.png"
+                src="https://cdn.glitch.global/c7f53e9a-3a2b-48bd-bf73-1be865655ec7/play.png?v=1721869810503"
                 alt="Tap to launch AR"
               />
+        </div>
+        <div class="attribution" id="whatsapp-controls">
+          <button><img src="whatsapp.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="twitter-controls">
+          <button><img src="twitter.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="call-controls">
+          <button><img src="call.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="snapchat-controls">
+          <button><img src="snapchat.png" alt="Button Image"/></button>
+        </div>
+        <div class="attribution" id="facebook-controls">
+          <button><img src="facebook.png" alt="Button Image"/></button>
         </div>
       </model-viewer>
 
       <script>
-        // const modelViewerColor = document.querySelector("model-viewer#ar-code");
-        // const modelViewerColor1 = document.querySelector("ar-code");
-        // document.querySelector("#play-controls").addEventListener("click", (event) => {
-        //     // SongTune.play();
-        //     alert("play button clicked");
-        //   });
-
-                const arLink = document.getElementById('ar-link');
+         const arLink = document.getElementById('ar-link');
         
               // URLs for Android and iOS
               const androidIntentURL =
