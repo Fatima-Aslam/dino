@@ -1,171 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>&lt;Honey Badger &gt;</title>
+    <title>Honey Badger AR</title>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <link rel="stylesheet" href="demo-styles.css" />
-
-    <!-- The following libraries and polyfills are recommended to maximize browser support -->
-    <!-- NOTE: you must adjust the paths as appropriate for your project -->
-
-    <!-- Web Components polyfill to support Edge and Firefox < 63 -->
-        <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.1.3/webcomponents-loader.js"></script>
-
-    <!-- Intersection Observer polyfill for better performance in Safari and IE11 -->
-        <script src="https://unpkg.com/intersection-observer@0.5.1/intersection-observer.js"></script>
-
-    <!-- Resize Observer polyfill improves resize behavior in non-Chrome browsers -->
-        <script src="https://unpkg.com/resize-observer-polyfill@1.5.0/dist/ResizeObserver.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
-
-    <!-- The :focus-visible polyfill removes the focus ring for some input types -->
-    <script
-      src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
-      defer
-    ></script>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #fff;
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .ar-launch-image {
+        max-width: 90%;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <div id="card">
-      <!-- All you need to put beautiful, interactive 3D content on your site: -->
-<!--       <model-viewer
-        id="play-paused"
-        camera-controls
-        touch-action="pan-y"
-        autoplay
-        ar
-        ar-modes="scene-viewer webxr quick-look"
-        scale="0.2 0.2 0.2"
-        shadow-intensity="1"
-        src="honey.glb"
-        ios-src="honey.usdz"    
-      alt="Honey Badger"
-      > -->
-
-      <model-viewer
-        id="play-paused"
-        camera-controls
-        touch-action="pan-y"
-        autoplay
-        ar
-        ar-modes="scene-viewer webxr quick-look"
-        scale="0.2 0.2 0.2"
-        shadow-intensity="1"
-        src="model.glb"
-        ios-src="honey.usdz"    
-      alt="Honey Badger"
-      >
-        
-        <div class="attribution" id="play-controls">
-          <button><img src="https://cdn.glitch.global/c7f53e9a-3a2b-48bd-bf73-1be865655ec7/play.png?v=1721869810503" alt="Button Image"/></button>
-        </div>
-        <div class="attribution" id="whatsapp-controls">
-<!--           <a href="intent://arvr.google.com/scene-viewer/1.0?file=https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Models/master/2.0/Avocado/glTF/Avocado.gltf#Intent;scheme=https;package=com.google.android.googlequicksearchbox;action=android.intent.action.VIEW;S.browser_fallback_url=https://developers.google.com/ar;end;">Avocado</a> -->
-<a href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;">Avocado</a>
-          <!--           <button><img src="whatsapp.png" alt="Button Image"/></button> -->
-        </div>
-<!--         <div class="attribution" id="twitter-controls">
-          <button><img src="twitter.png" alt="Button Image"/></button>
-        </div>
-        <div class="attribution" id="call-controls">
-          <button><img src="call.png" alt="Button Image"/></button>
-        </div>
-        <div class="attribution" id="snapchat-controls">
-          <button><img src="snapchat.png" alt="Button Image"/></button>
-        </div>
-        <div class="attribution" id="facebook-controls">
-          <button><img src="facebook.png" alt="Button Image"/></button>
-        </div> -->
-      </model-viewer>
-
-      <script>
-        var SongTune = new Howl({
-        src: [
-          "https://cdn.glitch.global/91a464bf-2558-4f5b-91b6-02948124204e/song.mp3?v=1725276897258",
-        ],
-         loop: true,
-      });
-        const modelViewerColor = document.querySelector(
-          "model-viewer#play-paused"
-        );
- const modelViewerColor1 = document.querySelector(
-          "play-paused"
-        );
-        document
-          .querySelector("#play-controls")
-          .addEventListener("click", (event) => {
-            SongTune.play();
-            //alert("play button clicked");
-          });
-      </script>
-      <section class="attribution">
-        <span>
-          <h1>Honey Badger</h1>
-          <!--         <span>By <a href="https://poly.google.com/view/dLHpzNdygsg" target="_blank">Poly</a></span> -->
-        </span>
-      </section>
-    </div>
-
-    <!-- 💁 Include both scripts below to support all browsers! -->
-
-    <!-- Loads <model-viewer> for modern browsers: -->
-    <script
-      type="module"
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
-    ></script>
-
-    <!-- Loads <model-viewer> for old browsers like IE11: -->
-    <script
-      nomodule
-      src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
-    ></script>
-      <script>
-        const modelViewer = document.getElementById('play-paused');
-
-        // Define your sound URL for Android Scene Viewer
-        const androidSoundUrl = 'https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg'; // Or .mp3
-
-        // Function to create the custom AR intent for Android Scene Viewer
-        function createSceneViewerIntent(modelUrl, title, soundUrl) {
-            const baseUrl = 'intent://arvr.google.com/scene-viewer/1.2';
-            const params = new URLSearchParams();
-            params.append('file', https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb);
-            params.append('title', HoneyBadger);
-            params.append('sound', https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg); // Add your sound here!
-            params.append('referrer', 'https:dino-pearl-three.vercel.app:AR_EXPERIENCE'); // Customize referrer
-
-            // Other potential parameters you might want from the model-viewer
-            // e.g., scale, auto-place, etc. For simplicity, we'll keep it basic for now.
-
-            const fallbackUrl = `https://arvr.google.com/scene-viewer?${params.toString()}`;
-
-            return `${baseUrl}?${params.toString()}#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=${encodeURIComponent(fallbackUrl)};end;`;
-        }
-
-        // Override the default AR button behavior for Android to inject sound
-        modelViewer.addEventListener('ar-button-activated', (event) => {
-            // Only apply this custom logic if the platform is Android and Scene Viewer is the mode
-            if (event.detail.arStatus === 'not-presenting' && modelViewer.arStatus === 'not-presenting' && navigator.userAgent.includes('Android')) {
-                // Check if the user agent is Android to ensure we target Scene Viewer
-                const glbUrl = modelViewer.src;
-                const altText = modelViewer.alt;
-
-                const customIntentUrl = createSceneViewerIntent(glbUrl, altText, androidSoundUrl);
-
-                // This will trigger the Scene Viewer directly with your custom intent
-                window.location.href = customIntentUrl;
-
-                // Prevent model-viewer's default AR launch for Android, as we've handled it
-                event.preventDefault(); 
-            }
-        });
-        
-        // Ensure that the iOS Quick Look works as expected by just providing the ios-src
-        // model-viewer will handle the click for `ios-src` automatically.
-
-    </script>
+    <!-- ✅ Tap image to launch AR directly (with camera & sound) -->
+    <a
+      href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&mode=ar_only&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;scheme=https;package=com.google.android.googlequicksearchbox;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&mode=ar_only&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;"
+    >
+      <img
+        class="ar-launch-image"
+        src="honeyBadger.png"
+        alt="Tap to launch AR"
+      />
+    </a>
   </body>
 </html>
