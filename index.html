@@ -54,10 +54,9 @@
         ar-modes="scene-viewer webxr quick-look"
         scale="0.2 0.2 0.2"
         shadow-intensity="1"
-        src="model.glb"
+        src="honey.glb"
         ios-src="honey.usdz"    
       alt="Honey Badger"
-        sound="https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg"
       >
         
         <div class="attribution" id="play-controls">
@@ -68,7 +67,7 @@
 <a href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;">Avocado</a>
           <!--           <button><img src="whatsapp.png" alt="Button Image"/></button> -->
         </div>
-        <div class="attribution" id="twitter-controls">
+<!--         <div class="attribution" id="twitter-controls">
           <button><img src="twitter.png" alt="Button Image"/></button>
         </div>
         <div class="attribution" id="call-controls">
@@ -79,7 +78,7 @@
         </div>
         <div class="attribution" id="facebook-controls">
           <button><img src="facebook.png" alt="Button Image"/></button>
-        </div>
+        </div> -->
       </model-viewer>
 
       <script>
@@ -124,7 +123,7 @@
       src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"
     ></script>
       <script>
-        const modelViewer = document.getElementById('ar-model');
+        const modelViewer = document.getElementById('play-paused');
 
         // Define your sound URL for Android Scene Viewer
         const androidSoundUrl = 'happy.mp3'; // Or .mp3
@@ -133,10 +132,10 @@
         function createSceneViewerIntent(modelUrl, title, soundUrl) {
             const baseUrl = 'intent://arvr.google.com/scene-viewer/1.2';
             const params = new URLSearchParams();
-            params.append('file', modelUrl);
-            params.append('title', title);
-            params.append('sound', soundUrl); // Add your sound here!
-            params.append('referrer', 'your-website.com:AR_EXPERIENCE'); // Customize referrer
+            params.append('file', honey.glb);
+            params.append('title', HoneyBadger);
+            params.append('sound', happy.mp3); // Add your sound here!
+            params.append('referrer', 'https:dino-pearl-three.vercel.app:AR_EXPERIENCE'); // Customize referrer
 
             // Other potential parameters you might want from the model-viewer
             // e.g., scale, auto-place, etc. For simplicity, we'll keep it basic for now.
