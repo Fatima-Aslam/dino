@@ -49,10 +49,10 @@
       <script>
         const modelViewerColor = document.querySelector("model-viewer#ar-code");
         const modelViewerColor1 = document.querySelector("ar-code");
-        document.querySelector("#play-controls").addEventListener("click", (event) => {
-            // SongTune.play();
-            alert("play button clicked");
-          // URLs for Android and iOS
+
+        const arLink = document.getElementById('play-controls');
+
+        // URLs for Android and iOS
               const androidIntentURL =
                 'intent://arvr.google.com/scene-viewer/1.2?' +
                 'file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb' +
@@ -78,7 +78,11 @@
               } else {
                 arLink.setAttribute('href', androidIntentURL);
               }
-          });
+        
+        // document.querySelector("#play-controls").addEventListener("click", (event) => {
+        //     // SongTune.play();
+        //     alert("play button clicked");
+        //   });
       </script>
       <section class="attribution">
         <span>
