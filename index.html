@@ -90,6 +90,7 @@
     ></script>
 
     <script>
+      alert("in script");
       const arLink = document.getElementById('ar-launcher');
 
       const androidIntentURL =
@@ -115,6 +116,7 @@
         arLink.setAttribute('rel', 'ar');
         arLink.setAttribute('href', iosUSDZLink);
       } else {
+        alert("in android");
         arLink.setAttribute('href', androidIntentURL);
       }
     </script>
