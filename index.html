@@ -44,6 +44,14 @@
         <div class="attribution" id="whatsapp-controls">
             <a href="intent://arvr.google.com/scene-viewer/1.2?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg#Intent;package=com.google.android.googlequicksearchbox;scheme=https;S.browser_fallback_url=https://arvr.google.com/scene-viewer?file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb&title=Alpine+goat&referrer=google.com:ANIMALS:kp&sound=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/Goat_Alpine_Male_Adult.ogg;end;">Avocado</a>
         </div>
+        <div class="attribution" id="whatsapp-controls">
+            <a id="ar-link" href="#">
+              <img
+                class="ar-launch-image"
+                src="whatsapp.png"
+                alt="Tap to launch AR"
+              />
+        </div>
       </model-viewer>
 
       <script>
@@ -54,9 +62,9 @@
         //     alert("play button clicked");
         //   });
 
-        const arLink = document.getElementById('play-controls');
-
-        // URLs for Android and iOS
+                const arLink = document.getElementById('ar-link');
+        
+              // URLs for Android and iOS
               const androidIntentURL =
                 'intent://arvr.google.com/scene-viewer/1.2?' +
                 'file=https://storage.googleapis.com/ar-answers-in-search-models/static/AlpineGoat/model.glb' +
